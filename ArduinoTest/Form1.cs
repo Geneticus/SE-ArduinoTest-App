@@ -19,6 +19,7 @@ namespace ArduinoTest
             serialPort1.BaudRate = 9600;
         }
 
+#region Tab1
         private void button1_Click(object sender, EventArgs e)
         {
             serialPort1.Open();
@@ -43,6 +44,7 @@ namespace ArduinoTest
             panel2.BackColor = Color.Red;
             panel1.BackColor = Color.Transparent;
         }
+#endregion
 
         private void label4_Click(object sender, EventArgs e)
         {
@@ -51,6 +53,7 @@ namespace ArduinoTest
 
         private void Button_SendSingle_Click(object sender, EventArgs e)
         {
+            // http://www.ascii-code.com/
 
         }
     }
