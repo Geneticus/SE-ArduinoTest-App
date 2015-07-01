@@ -15,11 +15,14 @@ namespace ArduinoTest
         public Form1()
         {
             InitializeComponent();
-            serialPort1.PortName = "COM5";//Check Arduino IDE for what COM port is tied to device
+            
+            comboBox1.SelectedIndex = 0 ;
+            serialPort1.PortName = comboBox1.Text;
+            //serialPort1.PortName = "COM5";//Check Arduino IDE for what COM port is tied to device
             serialPort1.BaudRate = 9600;
         }
 
-#region Tab1
+        #region Tab1
         private void button1_Click(object sender, EventArgs e)
         {
             serialPort1.Open();
@@ -41,20 +44,31 @@ namespace ArduinoTest
                 serialPort1.WriteLine("0");
             }
             serialPort1.Close();
-            panel2.BackColor = Color.Red;
+            panel2.BackColor = Color.Red; 
             panel1.BackColor = Color.Transparent;
         }
-#endregion
+        #endregion
 
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        #region Tab2
         private void Button_SendSingle_Click(object sender, EventArgs e)
         {
             // http://www.ascii-code.com/
 
+            string textToSend = string.Format("\x02{0}\x03",textBox1.Text.Trim()); 
+
+            serialPort1.Open();
+            if (serialPort1.IsOpen)
+            {
+                serialPort1.WriteLine(textToSend);
+            }
+            serialPort1.Close();
+
+        }
+        #endregion
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            serialPort1.PortName = comboBox1.Text;
         }
     }
 }
