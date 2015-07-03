@@ -54,7 +54,7 @@ namespace ArduinoTest
         {
             // http://www.ascii-code.com/
 
-            string textToSend = string.Format("\x02{0}\x03",textBox1.Text.Trim()); 
+            string textToSend = string.Format("\0x2{0}\0x3",textBox1.Text.Trim()); 
 
             serialPort1.Open();
             if (serialPort1.IsOpen)

@@ -42,6 +42,13 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -50,13 +57,6 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -166,6 +166,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(704, 186);
             this.textBox2.TabIndex = 7;
+            this.textBox2.Text = "00,00,100,100, AB";
             // 
             // label3
             // 
@@ -199,6 +200,72 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Send Multiple Strings";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(320, 92);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(201, 17);
+            this.checkBox3.TabIndex = 17;
+            this.checkBox3.Text = "Loop alternating Dampers on and off.";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(320, 69);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(233, 17);
+            this.checkBox2.TabIndex = 16;
+            this.checkBox2.Text = "Loop Energy  from 0 to MAX then start over.";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(314, 238);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(420, 13);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "We might need to add a Throttle in  milliseconds to control how often a message i" +
+    "s sent.";
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(317, 208);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(106, 23);
+            this.button5.TabIndex = 14;
+            this.button5.Text = "Stop Data Stream";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(317, 158);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(106, 23);
+            this.button6.TabIndex = 13;
+            this.button6.Text = "Start Data Stream";
+            this.button6.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(317, 131);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(213, 13);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "Loop as many times as set in the box above";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 3);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(232, 13);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Send any checked items once to the serial port.";
             // 
             // label4
             // 
@@ -301,72 +368,6 @@
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 2;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 3);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(232, 13);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Send any checked items once to the serial port.";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(317, 131);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(213, 13);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Loop as many times as set in the box above";
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(317, 208);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(106, 23);
-            this.button5.TabIndex = 14;
-            this.button5.Text = "Stop Data Stream";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(317, 158);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(106, 23);
-            this.button6.TabIndex = 13;
-            this.button6.Text = "Start Data Stream";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(314, 238);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(420, 13);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "We might need to add a Throttle in  milliseconds to control how often a message i" +
-    "s sent.";
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(320, 69);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(233, 17);
-            this.checkBox2.TabIndex = 16;
-            this.checkBox2.Text = "Loop Energy  from 0 to MAX then start over.";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // checkBox3
-            // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(320, 92);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(201, 17);
-            this.checkBox3.TabIndex = 17;
-            this.checkBox3.Text = "Loop alternating Dampers on and off.";
-            this.checkBox3.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
