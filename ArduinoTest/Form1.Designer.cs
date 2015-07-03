@@ -50,6 +50,13 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -171,6 +178,13 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.checkBox3);
+            this.tabPage3.Controls.Add(this.checkBox2);
+            this.tabPage3.Controls.Add(this.label7);
+            this.tabPage3.Controls.Add(this.button5);
+            this.tabPage3.Controls.Add(this.button6);
+            this.tabPage3.Controls.Add(this.label6);
+            this.tabPage3.Controls.Add(this.label5);
             this.tabPage3.Controls.Add(this.label4);
             this.tabPage3.Controls.Add(this.checkedListBox1);
             this.tabPage3.Controls.Add(this.checkBox1);
@@ -189,7 +203,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(116, 20);
+            this.label4.Location = new System.Drawing.Point(438, 27);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(128, 13);
             this.label4.TabIndex = 10;
@@ -209,7 +223,7 @@
             "Send Inventory (Int)",
             "Send Inventory Max (Int)",
             "Send Antenna (Bool)"});
-            this.checkedListBox1.Location = new System.Drawing.Point(9, 45);
+            this.checkedListBox1.Location = new System.Drawing.Point(9, 27);
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.Size = new System.Drawing.Size(165, 154);
             this.checkedListBox1.TabIndex = 9;
@@ -217,16 +231,16 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(9, 205);
+            this.checkBox1.Location = new System.Drawing.Point(323, 46);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(181, 17);
+            this.checkBox1.Size = new System.Drawing.Size(231, 17);
             this.checkBox1.TabIndex = 8;
-            this.checkBox1.Text = "Send random Item on each Loop";
+            this.checkBox1.Text = "Loop Health  from 0 to MAX then start over.";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(9, 334);
+            this.button4.Location = new System.Drawing.Point(9, 246);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(106, 23);
             this.button4.TabIndex = 7;
@@ -235,7 +249,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(9, 284);
+            this.button3.Location = new System.Drawing.Point(9, 196);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(106, 23);
             this.button3.TabIndex = 6;
@@ -244,7 +258,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(9, 19);
+            this.textBox1.Location = new System.Drawing.Point(323, 20);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 5;
@@ -252,11 +266,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 3);
+            this.label2.Location = new System.Drawing.Point(320, 3);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(229, 13);
+            this.label2.Size = new System.Drawing.Size(79, 13);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Set interval for data transmission in milliseconds";
+            this.label2.Text = "Repeat X times";
             // 
             // comboBox1
             // 
@@ -287,6 +301,72 @@
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 2;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 3);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(232, 13);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Send any checked items once to the serial port.";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(317, 131);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(213, 13);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "Loop as many times as set in the box above";
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(317, 208);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(106, 23);
+            this.button5.TabIndex = 14;
+            this.button5.Text = "Stop Data Stream";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(317, 158);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(106, 23);
+            this.button6.TabIndex = 13;
+            this.button6.Text = "Start Data Stream";
+            this.button6.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(314, 238);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(420, 13);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "We might need to add a Throttle in  milliseconds to control how often a message i" +
+    "s sent.";
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(320, 69);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(233, 17);
+            this.checkBox2.TabIndex = 16;
+            this.checkBox2.Text = "Loop Energy  from 0 to MAX then start over.";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(320, 92);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(201, 17);
+            this.checkBox3.TabIndex = 17;
+            this.checkBox3.Text = "Loop alternating Dampers on and off.";
+            this.checkBox3.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -333,6 +413,13 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
     }
 }
 
