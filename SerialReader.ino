@@ -36,8 +36,8 @@ void recvWithStartEndMarkers()
 {
 	static boolean recvInProgress = false;
 	static byte ndx = 0;
-	char startMarker = 0x2;
-	char endMarker = 0x3;
+	char startMarker = '\x02';
+	char endMarker = '\x03';
 	char rc;
 	
 	// if (Serial.available() > 0) {
@@ -60,7 +60,7 @@ void recvWithStartEndMarkers()
 			}
 		}
 
-		else if (rc == startMarker) {
+		if (rc == startMarker) {
 			recvInProgress = true;
 		}
 	}
@@ -70,9 +70,9 @@ void showNewData() {
 	if (newData == true) 
         {
                 digitalWrite(led, HIGH);   // turn the LED on (HIGH is the voltage level)
-                delay(1000);               // wait for a second
+                delay(2000);               // wait for 2 seconds
                 digitalWrite(led, LOW);    // turn the LED off by making the voltage LOW
-                delay(1000);               // wait for a second
+                delay(2000);               // wait for 2 seconds
 		//Serial.print("This just in ... ");
 		//Serial.println(receivedChars);
 		newData = false;

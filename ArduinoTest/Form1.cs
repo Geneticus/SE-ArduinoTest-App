@@ -19,7 +19,7 @@ namespace ArduinoTest
             comboBox1.SelectedIndex = 0 ;
             serialPort1.PortName = comboBox1.Text;
             //serialPort1.PortName = "COM5";//Check Arduino IDE for what COM port is tied to device
-            serialPort1.BaudRate = 9600;
+            serialPort1.BaudRate = 115200;
         }
 
         #region Tab1
@@ -54,7 +54,7 @@ namespace ArduinoTest
         {
             // http://www.ascii-code.com/
 
-            string textToSend = string.Format("\0x2{0}\0x3",textBox1.Text.Trim()); 
+            string textToSend = string.Format("\x02{0}\x03",textBox2.Text);
 
             serialPort1.Open();
             if (serialPort1.IsOpen)
