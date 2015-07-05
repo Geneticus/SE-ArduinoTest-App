@@ -70,5 +70,27 @@ namespace ArduinoTest
         {
             serialPort1.PortName = comboBox1.Text;
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            //Serial String Format (StartBit)(DataType,Item,CurrentValue,MaxValue)(StopBit)
+            //StartBit = "\x02"
+            //DataType = Integer value starting from 1. Indicates if values are Int, Float, Bool, etc.                      
+            //Item = Number begining with 1. Indicates what the value is i.e. Health, speed, dampers.
+            //CurrentValue = can be any type as indicated by DataType
+            //MaxValue = can be any numeric as indicated by DataType
+            //StopBit = "\x03"
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            //Serial String Format (StartBit)(DataType,Item,CurrentValue,MaxValue)(StopBit)
+            //StartBit = "\x02"
+            //DataType = Integer value starting from 1. Indicates if values are Int, Float, Bool, etc.                      
+            //Item = Number begining with 1. Indicates what the value is i.e. Health, speed, dampers.
+            //CurrentValue = can be any type as indicated by DataType
+            //MaxValue = can be any numeric as indicated by DataType
+            //StopBit = "\x03"
+        }
     }
 }

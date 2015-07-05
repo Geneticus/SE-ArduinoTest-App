@@ -166,7 +166,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(704, 186);
             this.textBox2.TabIndex = 7;
-            this.textBox2.Text = "00,00,100,100, AB";
+            this.textBox2.Text = "0,100,100,99";
             // 
             // label3
             // 
@@ -248,6 +248,7 @@
             this.button6.TabIndex = 13;
             this.button6.Text = "Start Data Stream";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // label6
             // 
@@ -322,6 +323,7 @@
             this.button3.TabIndex = 6;
             this.button3.Text = "Start Data Stream";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // textBox1
             // 
