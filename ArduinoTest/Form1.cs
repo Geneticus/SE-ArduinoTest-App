@@ -12,25 +12,29 @@ namespace ArduinoTest
 {
     public partial class Form1 : Form
     {
+        public delegate void SetTextCallback(string text);
         public Form1()
         {
             InitializeComponent();
             
             comboBox1.SelectedIndex = 0 ;
             serialPort1.PortName = comboBox1.Text;
-            //serialPort1.PortName = "COM5";//Check Arduino IDE for what COM port is tied to device
+            serialPort1.PortName = "COM5";//Check Arduino IDE for what COM port is tied to device
             serialPort1.BaudRate = 115200;
+            serialPort1.DataReceived += serialPort1_DataReceived;
+            serialPort1.Open();
+
         }
 
         #region Tab1
         private void button1_Click(object sender, EventArgs e)
         {
-            serialPort1.Open();
+            //serialPort1.Open();
             if (serialPort1.IsOpen)
             {
             serialPort1.WriteLine("1");
             }
-            serialPort1.Close();
+            //serialPort1.Close();
             panel1.BackColor = Color.Lime;
             panel2.BackColor = Color.Transparent;            
 
@@ -38,12 +42,12 @@ namespace ArduinoTest
 
         private void button2_Click(object sender, EventArgs e)
         {
-            serialPort1.Open();
+            //serialPort1.Open();
             if (serialPort1.IsOpen)
             {
                 serialPort1.WriteLine("0");
             }
-            serialPort1.Close();
+            //serialPort1.Close();
             panel2.BackColor = Color.Red; 
             panel1.BackColor = Color.Transparent;
         }
@@ -56,12 +60,12 @@ namespace ArduinoTest
 
             string textToSend = string.Format("\x02{0}\x03",textBox2.Text);
 
-            serialPort1.Open();
+            //serialPort1.Open();
             if (serialPort1.IsOpen)
             {
                 serialPort1.WriteLine(textToSend);
             }
-            serialPort1.Close();
+            //serialPort1.Close();
 
         }
         #endregion
@@ -91,6 +95,32 @@ namespace ArduinoTest
             //CurrentValue = can be any type as indicated by DataType
             //MaxValue = can be any numeric as indicated by DataType
             //StopBit = "\x03"
+        }
+
+        void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        {
+            var incoming = serialPort1.ReadExisting();
+            dataRecieved(incoming);
+        }
+
+        private void dataRecieved(string text)
+        {
+           
+
+
+            // InvokeRequired required compares the thread ID of
+            // the calling thread to the thread ID of the 
+            // creating thread.  If these threads are different, 
+            // it returns true
+            if (this.textBox3.InvokeRequired)
+            {
+                SetTextCallback d = new SetTextCallback(dataRecieved);
+                this.Invoke(d, new object[] { text });
+            }
+            else
+            {
+                this.textBox3.Text = text;
+            }
         }
     }
 }
