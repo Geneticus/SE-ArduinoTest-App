@@ -1,6 +1,7 @@
 /*-----( Import needed libraries )-----*/
 
 /*-----( Declare Constants and Pin Numbers )-----*/
+#include <Adafruit_GFX.h>
 int led13 = 13;
 int led12 = 12;
 /*-----( Declare objects )-----*/
@@ -70,7 +71,7 @@ void DebugPrint( char *debugMessage, int Var1)
 }   
 void recvData() 
 {
-	static boolean recvInProgress = false;
+	static boolean recvInProgress = true;
 	static byte index = 0;
 	//char startMarker = 0x2;
 	//char endMarker = 0x3;
@@ -85,14 +86,14 @@ void recvData()
         {
 		      rc = Serial.read();
 			  if (rc == startMarker){ startMarkerUsed = rc; Serial.println(startMarkerUsed); }
-			  else if (rc == startMarkerString){ startMarkerUsed = rc; Serial.println(startMarkerUsed); }
+			  if (rc == startMarkerString){ startMarkerUsed = rc; Serial.println(startMarkerUsed); }
 		      if (recvInProgress == true) 
 		      {
              delay(1);
 			 
 			 //Serial.print(rc);
 			 
-			      if (rc != endMarker || rc != endMarkerString ) 
+			      if (rc != endMarker && rc != endMarkerString ) 
 			      {              
              delay(1);
 				      receivedChars[index] = rc;
@@ -102,6 +103,7 @@ void recvData()
 					      index = numChars - 1;
 				      }
 			      }
+				 				  
     			else 
     			{           
 					delay(1); 
