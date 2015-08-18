@@ -122,5 +122,10 @@ namespace ArduinoTest
                 this.textBox3.Text = text;
             }
         }
+
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
