@@ -75,6 +75,18 @@ namespace ArduinoTest
             //CurrentValue = can be any type as indicated by DataType
             //MaxValue = can be any numeric as indicated by DataType
             //StopBit = "\x03"
+            // http://www.ascii-code.com/
+
+            string textToSend = string.Format("\x02{0}\x03",textBox2.Text);
+
+            //serialPort1.Open();
+            if (serialPort1.IsOpen)
+            {
+                serialPort1.WriteLine(textToSend);
+            }
+            //serialPort1.Close();
+
+        
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -110,6 +122,11 @@ namespace ArduinoTest
             {
                 this.textBox3.Text = text;
             }
+        }
+
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

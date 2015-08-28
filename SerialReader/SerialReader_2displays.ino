@@ -6,6 +6,7 @@
 //#include <avr/dtostrf.h>  Uncomment for Arduino Due
 #include "SELogo.h"
 #include "Oxygen.h"
+#include "Suit_Energy.h"
 
 /*-----( Declare Constants and Pin Numbers )-----*/
 #define OLED_RESET 4
@@ -30,10 +31,15 @@ void setup()
   //pinMode(led13, OUTPUT);      // sets the digital pin as output
   //pinMode(led12, OUTPUT);      // sets the digital pin as output
   Serial.begin(115200);  //set serial to 115200 baud rate
+  display.begin(SSD1306_SWITCHCAPVCC, 0x3D);  // initialize with the I2C addr 0x3D (for the 128x64)
+  display.clearDisplay();
+  display.drawBitmap(0, 0, Logo, 128, 64, 1);
+  display.display();
   display.begin(SSD1306_SWITCHCAPVCC, 0x3C);  // initialize with the I2C addr 0x3D (for the 128x64)
   display.clearDisplay();
   display.drawBitmap(0, 0, Logo, 128, 64, 1);
   display.display();
+
   delay(3000);
   Serial.println();
   Serial.println("setup complete");
@@ -156,11 +162,6 @@ void DebugPrint( char *debugMessage, int Var1)
   Serial.print (Var1, DEC);
   Serial.println();
 }
-void recvData()
-{
-  
-}
-
 void parseDoubleMessage()
 {
   char delimiter[] = ",";
@@ -227,7 +228,7 @@ void parseDoubleMessage()
         break;
 
       case 2:
-        //DisplayEnergy();
+        DisplayEnergy(CurrentValue);
         break;
 
       case 3:
@@ -275,15 +276,33 @@ void parseStringMessage()
   //message = false;
   //Serial.println("End of String Parsing");
 }
-
+void DisplayEnergy(double CurrentValue)
+{
+  char TempString[7];
+  dtostrf(CurrentValue / 100, 2, 2, TempString);
+  String displayVal = String(TempString);  // cast it to string from char
+  display.begin(SSD1306_SWITCHCAPVCC, 0x3C);  // initialize with the I2C addr 0x3D (for the 128x64)
+  display.clearDisplay();
+  display.display();
+  display.begin(SSD1306_SWITCHCAPVCC, 0x3C);  // initialize with the I2C addr 0x3D (for the 128x64)
+  display.drawBitmap(0, 0, Suit_Energy, 128, 64, 1);
+  display.setTextSize(2);
+  display.setTextColor(WHITE);
+  display.setCursor(34, 36);
+  display.println(displayVal + '%');
+  display.display();
+  Serial.println("Energy displayed.");
+  //delay(2000);
+}
 void DisplayOxygen(double CurrentValue)
 {
   char TempString[7];
   dtostrf(CurrentValue / 100, 2, 2, TempString);
   String displayVal = String(TempString);  // cast it to string from char
+  display.begin(SSD1306_SWITCHCAPVCC, 0x3D);  // initialize with the I2C addr 0x3D (for the 128x64)
   display.clearDisplay();
   display.display();
-  //delay(1000);
+  display.begin(SSD1306_SWITCHCAPVCC, 0x3D);  // initialize with the I2C addr 0x3D (for the 128x64)
   display.drawBitmap(0, 0, Oxygen, 128, 64, 1);
   display.setTextSize(2);
   display.setTextColor(WHITE);
@@ -298,3 +317,4 @@ void DisplayOxygen(double CurrentValue)
   int v; 
   return (int) &v - (__brkval == 0 ? (int) &__heap_start : (int) __brkval); 
 }
+
