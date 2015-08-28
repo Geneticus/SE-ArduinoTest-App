@@ -16,10 +16,7 @@ namespace ArduinoTest
         public Form1()
         {
             InitializeComponent();
-            
-            comboBox1.SelectedIndex = 0 ;
-            serialPort1.PortName = comboBox1.Text;
-            serialPort1.PortName = "COM5";//Check Arduino IDE for what COM port is tied to device
+            serialPort1.PortName = ArduinoController.AutodetectArduinoPort();
             serialPort1.BaudRate = 115200;
             serialPort1.DataReceived += serialPort1_DataReceived;
             serialPort1.Open();
@@ -27,8 +24,7 @@ namespace ArduinoTest
         }
 
         #region Tab1
-        private void button1_Click(object sender, EventArgs e)
-        {
+        private void button1_Click(object sender, EventArgs e)      {
             //serialPort1.Open();
             if (serialPort1.IsOpen)
             {
@@ -70,11 +66,6 @@ namespace ArduinoTest
         }
         #endregion
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            serialPort1.PortName = comboBox1.Text;
-        }
-
         private void button3_Click(object sender, EventArgs e)
         {
             //Serial String Format (StartBit)(DataType,Item,CurrentValue,MaxValue)(StopBit)
@@ -106,8 +97,6 @@ namespace ArduinoTest
         private void dataRecieved(string text)
         {
            
-
-
             // InvokeRequired required compares the thread ID of
             // the calling thread to the thread ID of the 
             // creating thread.  If these threads are different, 
