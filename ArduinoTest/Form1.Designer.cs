@@ -41,6 +41,7 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.checkedListBox2 = new System.Windows.Forms.CheckedListBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -55,12 +56,16 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.checkedListBox2 = new System.Windows.Forms.CheckedListBox();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.button4 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -107,6 +112,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Location = new System.Drawing.Point(75, 52);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -121,7 +127,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(696, 297);
+            this.tabPage1.Size = new System.Drawing.Size(1075, 297);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Toggle LEDs";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -134,7 +140,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(696, 297);
+            this.tabPage2.Size = new System.Drawing.Size(1075, 297);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Send Single String";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -190,6 +196,25 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Send Multiple Strings";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // checkedListBox2
+            // 
+            this.checkedListBox2.FormattingEnabled = true;
+            this.checkedListBox2.Items.AddRange(new object[] {
+            "Send Health (4 Digit Double)",
+            "Send Energy (4 Digit Double)",
+            "Send Oxygen (4 Digit Double)",
+            "Send Dampers (Bool (Int))",
+            "Send Jet Pack (Bool (Int))",
+            "Send Suit Light (Bool (Int))",
+            "Send Player Speed (Double)",
+            "Send Oxygen (4 Digit Double)",
+            "Send Inventory (Double)",
+            "Send Broadcast (Bool(Int))"});
+            this.checkedListBox2.Location = new System.Drawing.Point(216, 27);
+            this.checkedListBox2.Name = "checkedListBox2";
+            this.checkedListBox2.Size = new System.Drawing.Size(196, 154);
+            this.checkedListBox2.TabIndex = 18;
             // 
             // checkBox3
             // 
@@ -333,24 +358,35 @@
             this.textBox3.Size = new System.Drawing.Size(704, 353);
             this.textBox3.TabIndex = 3;
             // 
-            // checkedListBox2
+            // tabPage4
             // 
-            this.checkedListBox2.FormattingEnabled = true;
-            this.checkedListBox2.Items.AddRange(new object[] {
-            "Send Health (4 Digit Double)",
-            "Send Energy (4 Digit Double)",
-            "Send Oxygen (4 Digit Double)",
-            "Send Dampers (Bool (Int))",
-            "Send Jet Pack (Bool (Int))",
-            "Send Suit Light (Bool (Int))",
-            "Send Player Speed (Double)",
-            "Send Oxygen (4 Digit Double)",
-            "Send Inventory (Double)",
-            "Send Broadcast (Bool(Int))"});
-            this.checkedListBox2.Location = new System.Drawing.Point(216, 27);
-            this.checkedListBox2.Name = "checkedListBox2";
-            this.checkedListBox2.Size = new System.Drawing.Size(196, 154);
-            this.checkedListBox2.TabIndex = 18;
+            this.tabPage4.Controls.Add(this.button4);
+            this.tabPage4.Controls.Add(this.dataGridView1);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(1075, 297);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Device Detection";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(84, 53);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(703, 223);
+            this.dataGridView1.TabIndex = 0;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(103, 21);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(216, 23);
+            this.button4.TabIndex = 1;
+            this.button4.Text = "Populate Grid from WMI";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // Form1
             // 
@@ -368,6 +404,8 @@
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -402,6 +440,9 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.CheckedListBox checkedListBox2;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button button4;
     }
 }
 

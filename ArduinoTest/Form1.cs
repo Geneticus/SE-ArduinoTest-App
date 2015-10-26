@@ -4,27 +4,39 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Management;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO.Ports;
 
 namespace ArduinoTest
 {
+   
+
     public partial class Form1 : Form
     {
-        public delegate void SetTextCallback(string text);
+        //public delegate void SetTextCallback(string text);
         public Form1()
         {
             InitializeComponent();
-            serialPort1.PortName = ArduinoController.AutodetectArduinoPort();
-            serialPort1.BaudRate = 115200;
-            serialPort1.DataReceived += serialPort1_DataReceived;
-            serialPort1.Open();
+            string Uname = string.Empty;
+            List <Microcontroller> Microcontrollers = new List<Microcontroller>();            
+            Microcontrollers = ArduinoController.AutodetectArduinoPort();
+            //int controllerCount = 0;
 
+           //foreach(DropdownList in Form Start, Position blah blah)
+            var mc = Microcontrollers.Where(p => p.UName == "something from a TextBox").First();
+            //string SerialPortName = mc.serialPort.ToString();        
+               //serialPort1.DataReceived += serialPort1_DataReceived; // threading problems?
+                //serialPort1.Open();
+            
         }
 
+        
+
         #region Tab1
-        private void button1_Click(object sender, EventArgs e)      {
+    private void button1_Click(object sender, EventArgs e)      {
             //serialPort1.Open();
             if (serialPort1.IsOpen)
             {
@@ -115,8 +127,8 @@ namespace ArduinoTest
             // it returns true
             if (this.textBox3.InvokeRequired)
             {
-                SetTextCallback d = new SetTextCallback(dataRecieved);
-                this.Invoke(d, new object[] { text });
+                //SetTextCallback d = new SetTextCallback(dataRecieved);
+                //this.Invoke(d, new object[] { text });
             }
             else
             {
@@ -128,5 +140,30 @@ namespace ArduinoTest
         {
 
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            ManagementClass mc = new ManagementClass("Win32_SerialPort");
+            dataGridView1.Rows.Clear();
+            dataGridView1.Refresh();
+
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn());
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn());
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn());
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn());
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn());
+
+            foreach (ManagementObject mo in mc.GetInstances())
+            {
+                object col1 = mo["Name"] != null ? mo["Name"].ToString() : null;
+                object col2 = mo["Description"] != null ? mo["Description"].ToString() : null;
+                object col3 = mo["DeviceID"] != null ? mo["DeviceID"].ToString() : null;
+                object col4 = mo["PNPDeviceID"] != null ? mo["PNPDeviceID"].ToString() : null;
+                object col5 = mo["MaxBaudRate"] != null ? mo["MaxBaudRate"].ToString() : null;
+                dataGridView1.Rows.Add(new object[] { col1, col2, col3, col4, col5 });
+            }
+        }
+
+
     }
 }
