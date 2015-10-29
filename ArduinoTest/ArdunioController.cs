@@ -35,7 +35,7 @@ namespace ArduinoTest
                     }
 
                 }
-                return mc; //< Needs to return an object list of all deviceIds and total count
+                return mc; 
             }
             catch (ManagementException e)
             {
@@ -44,31 +44,6 @@ namespace ArduinoTest
 
             return null;
         }
-
-
-
-
-        /* public static List<SerialPort> AutoAssignSerialPort()
-         {
-        
-          try
-                 {
-                     int portCount = 0;
-                     foreach (Microcontroller controller in Microcontrollers)
-                         {
-                             public void AddSerialPort(string PortName, string BaudRate)
-                             {       
-                                 var sp = Enumerable.Range(0, portCount).Select(x => new SerialPort(PortName, BaudRate).ToList();
-                                 ports.Add(sp);
-                                 portCount++;
-            
-       
-                             }      
-                         }
-    
-                 }
-                    return sp; //< Needs to return an object list of all deviceIds and total count
-         }*/
 
     }
 }

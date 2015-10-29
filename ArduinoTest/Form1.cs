@@ -25,12 +25,20 @@ namespace ArduinoTest
             Microcontrollers = ArduinoController.AutodetectArduinoPort();
             //int controllerCount = 0;
 
-           //foreach(DropdownList in Form Start, Position blah blah)
-            var mc = Microcontrollers.Where(p => p.UName == "something from a TextBox").First();
-            //string SerialPortName = mc.serialPort.ToString();        
-               //serialPort1.DataReceived += serialPort1_DataReceived; // threading problems?
+            if (Microcontrollers.Count() == 0 )
+            {
+                var Options_Mockup = new Options_Mockup();
+                Options_Mockup.Show();
+            }
+
+            else
+            {
+                //foreach(DropdownList in Form Start, Position blah blah)
+                var mc = Microcontrollers.Where(p => p.UName == "something from a TextBox").First();
+                //string SerialPortName = mc.serialPort.ToString();        
+                //serialPort1.DataReceived += serialPort1_DataReceived; // threading problems?
                 //serialPort1.Open();
-            
+            }
         }
 
         
@@ -77,6 +85,8 @@ namespace ArduinoTest
 
         }
         #endregion
+       
+        #region Tab3
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -100,7 +110,10 @@ namespace ArduinoTest
 
         
         }
+        private void button5_Click(object sender, EventArgs e)
+        {
 
+        }
         private void button6_Click(object sender, EventArgs e)
         {
             //Serial String Format (StartBit)(DataType,Item,CurrentValue,MaxValue)(StopBit)
@@ -111,6 +124,7 @@ namespace ArduinoTest
             //MaxValue = can be any numeric as indicated by DataType
             //StopBit = "\x03"
         }
+        # endregion
 
         void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
@@ -136,10 +150,7 @@ namespace ArduinoTest
             }
         }
 
-        private void checkBox3_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
+        #region Tab4
 
         private void button4_Click(object sender, EventArgs e)
         {
@@ -163,6 +174,18 @@ namespace ArduinoTest
                 dataGridView1.Rows.Add(new object[] { col1, col2, col3, col4, col5 });
             }
         }
+
+        #endregion
+
+        #region Tab5
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            var Options_Mockup = new Options_Mockup();
+            Options_Mockup.Show();
+        }
+        #endregion
+
 
 
     }
