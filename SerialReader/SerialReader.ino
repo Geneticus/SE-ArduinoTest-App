@@ -6,6 +6,7 @@
 //#include <avr/dtostrf.h>  Uncomment for Arduino Due
 #include "SELogo.h"
 #include "Oxygen.h"
+#include "Suit_Energy.h"
 
 /*-----( Declare Constants and Pin Numbers )-----*/
 #define OLED_RESET 4
@@ -30,19 +31,30 @@ void setup()
   //pinMode(led13, OUTPUT);      // sets the digital pin as output
   //pinMode(led12, OUTPUT);      // sets the digital pin as output
   Serial.begin(115200);  //set serial to 115200 baud rate
+  display.begin(SSD1306_SWITCHCAPVCC, 0x3D);  // initialize with the I2C addr 0x3D (for the 128x64)
+  display.clearDisplay();
+  display.drawBitmap(0, 0, Logo, 128, 64, 1);
+  display.display();
   display.begin(SSD1306_SWITCHCAPVCC, 0x3C);  // initialize with the I2C addr 0x3D (for the 128x64)
   display.clearDisplay();
   display.drawBitmap(0, 0, Logo, 128, 64, 1);
   display.display();
   delay(3000);
-  Serial.println();
-  Serial.println("setup complete");
-  Serial.print("Free RAM at setup: ");
-  Serial.println(freeRam());
+  //Serial.println();
+  //Serial.println("setup complete");
+  //Serial.print("Free RAM at setup: ");
+  //Serial.println(freeRam());
 
 }
 //~4, Here is a first string to parse^<234, 467, 4587, 125><1234, 9467, 4587, 6125>~3, Here is a second string to parse!^~4, Here is a third string to parse^<945, 7, 28, 1159>~3, Here is a fourth string to parse!^
 // <1,3,0021,100>
+
+char *dtostrf (double val, signed char width, unsigned char prec, char *sout) {
+  char fmt[20];
+  sprintf(fmt, "%%%d.%df", width, prec);
+  sprintf(sout, fmt, val);
+  return sout;
+}
 
 void loop()
 {
@@ -62,8 +74,8 @@ void loop()
 
   static boolean recvInProgress = true;
   static byte index = 0;
-  //char startMarker = 0x2;
-  //char endMarker = 0x3;
+  //char startMarker = '\0x2';
+  //char endMarker = '\0x3';
   char startMarker = '<';
   char endMarker = '>';
   char startMarkerString = '~';
@@ -156,11 +168,6 @@ void DebugPrint( char *debugMessage, int Var1)
   Serial.print (Var1, DEC);
   Serial.println();
 }
-void recvData()
-{
-  
-}
-
 void parseDoubleMessage()
 {
   char delimiter[] = ",";
@@ -222,15 +229,15 @@ void parseDoubleMessage()
   }
       switch (item)
     {
-      case 1:
+      case 0:
         //DisplayHealth();
         break;
 
-      case 2:
-        //DisplayEnergy();
+      case 1:
+        DisplayEnergy(CurrentValue);
         break;
 
-      case 3:
+      case 2:
         DisplayOxygen(CurrentValue);
         break;
 
@@ -275,15 +282,33 @@ void parseStringMessage()
   //message = false;
   //Serial.println("End of String Parsing");
 }
-
+void DisplayEnergy(double CurrentValue)
+{
+  char TempString[8];
+  dtostrf(CurrentValue / 100, 2, 2, TempString);
+  String displayVal = String(TempString);  // cast it to string from char
+  display.begin(SSD1306_SWITCHCAPVCC, 0x3C);  // initialize with the I2C addr 0x3D (for the 128x64)
+  display.clearDisplay();
+  display.display();
+  display.begin(SSD1306_SWITCHCAPVCC, 0x3C);  // initialize with the I2C addr 0x3D (for the 128x64)
+  display.drawBitmap(0, 0, Suit_Energy, 128, 64, 1);
+  display.setTextSize(2);
+  display.setTextColor(WHITE);
+  display.setCursor(34, 36);
+  display.println(displayVal + '%');
+  display.display();
+  Serial.println("Energy displayed.");
+  //delay(2000);
+}
 void DisplayOxygen(double CurrentValue)
 {
   char TempString[7];
   dtostrf(CurrentValue / 100, 2, 2, TempString);
   String displayVal = String(TempString);  // cast it to string from char
+  display.begin(SSD1306_SWITCHCAPVCC, 0x3D);  // initialize with the I2C addr 0x3D (for the 128x64)
   display.clearDisplay();
   display.display();
-  //delay(1000);
+  display.begin(SSD1306_SWITCHCAPVCC, 0x3D);  // initialize with the I2C addr 0x3D (for the 128x64)
   display.drawBitmap(0, 0, Oxygen, 128, 64, 1);
   display.setTextSize(2);
   display.setTextColor(WHITE);
@@ -298,3 +323,4 @@ void DisplayOxygen(double CurrentValue)
   int v; 
   return (int) &v - (__brkval == 0 ? (int) &__heap_start : (int) __brkval); 
 }
+
