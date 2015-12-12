@@ -25,21 +25,31 @@ const byte numChars = 128;
 char receivedChars[numChars];
 boolean message = false;
 char startMarkerUsed = '.';
-
+String LastEnergyMessage = "";
+String LastOxygenMessage = "";
 void setup()
 {
   //pinMode(led13, OUTPUT);      // sets the digital pin as output
   //pinMode(led12, OUTPUT);      // sets the digital pin as output
   Serial.begin(115200);  //set serial to 115200 baud rate
+  
+  display.begin(SSD1306_SWITCHCAPVCC, 0x3D);  // initialize with the I2C addr 0x3D (for the 128x64)
+  //display.clearDisplay();
+  display.drawBitmap(0, 0, Logo, 128, 64, 1);
+  display.display();
+  
+  display.begin(SSD1306_SWITCHCAPVCC, 0x3C);  // initialize with the I2C addr 0x3D (for the 128x64)
+  //display.clearDisplay();
+  display.drawBitmap(0, 0, Logo, 128, 64, 1);
+  display.display();
+  
+  delay(1500);
   display.begin(SSD1306_SWITCHCAPVCC, 0x3D);  // initialize with the I2C addr 0x3D (for the 128x64)
   display.clearDisplay();
-  display.drawBitmap(0, 0, Logo, 128, 64, 1);
   display.display();
   display.begin(SSD1306_SWITCHCAPVCC, 0x3C);  // initialize with the I2C addr 0x3D (for the 128x64)
   display.clearDisplay();
-  display.drawBitmap(0, 0, Logo, 128, 64, 1);
   display.display();
-  delay(3000);
   //Serial.println();
   //Serial.println("setup complete");
   //Serial.print("Free RAM at setup: ");
@@ -98,13 +108,13 @@ void loop()
     }
     if (recvInProgress == true)
     {
-      delay(1);
+      delay(10);
 
       Serial.print(rc);
 
       if (rc != endMarker && rc != endMarkerString )
       {
-        delay(1);
+        //delay(1);
         receivedChars[index] = rc;
         index++;
         if (index >= numChars)
@@ -115,7 +125,7 @@ void loop()
 
       else
       {
-        delay(1);
+        //delay(1);
         Serial.println();
         Serial.println("Terminating read");
         receivedChars[index] = '\0'; // terminate the string
@@ -247,8 +257,8 @@ void parseDoubleMessage()
 
     }
     //delay(5000);
-    Serial.println("Double Parsing Completed.");
-    delay(2000);
+    //Serial.println("Double Parsing Completed.");
+    //delay(2000);
 }
 void parseStringMessage()
 {
@@ -284,38 +294,48 @@ void parseStringMessage()
 }
 void DisplayEnergy(double CurrentValue)
 {
-  char TempString[8];
-  dtostrf(CurrentValue / 100, 2, 2, TempString);
+  char TempString[7];
+  dtostrf(CurrentValue / 100, 3, 1, TempString);
   String displayVal = String(TempString);  // cast it to string from char
   display.begin(SSD1306_SWITCHCAPVCC, 0x3C);  // initialize with the I2C addr 0x3D (for the 128x64)
-  display.clearDisplay();
-  display.display();
-  display.begin(SSD1306_SWITCHCAPVCC, 0x3C);  // initialize with the I2C addr 0x3D (for the 128x64)
+  //display.clearDisplay();
+  //display.display();
+  //display.begin(SSD1306_SWITCHCAPVCC, 0x3C);  // initialize with the I2C addr 0x3D (for the 128x64)
   display.drawBitmap(0, 0, Suit_Energy, 128, 64, 1);
   display.setTextSize(2);
+  display.setTextColor(BLACK);
+  display.setCursor(34, 36);
+  display.println(LastEnergyMessage + '%');
+  //display.display();
+  LastEnergyMessage = displayVal;
   display.setTextColor(WHITE);
   display.setCursor(34, 36);
   display.println(displayVal + '%');
   display.display();
-  Serial.println("Energy displayed.");
+  //Serial.println("Energy displayed.");
   //delay(2000);
 }
 void DisplayOxygen(double CurrentValue)
 {
   char TempString[7];
-  dtostrf(CurrentValue / 100, 2, 2, TempString);
-  String displayVal = String(TempString);  // cast it to string from char
+  dtostrf(CurrentValue / 100, 3, 1, TempString);
+  String displayVal = String(TempString);  // cast it to string from char  
   display.begin(SSD1306_SWITCHCAPVCC, 0x3D);  // initialize with the I2C addr 0x3D (for the 128x64)
-  display.clearDisplay();
-  display.display();
-  display.begin(SSD1306_SWITCHCAPVCC, 0x3D);  // initialize with the I2C addr 0x3D (for the 128x64)
+  //display.clearDisplay();
+  //display.display();
+  //display.begin(SSD1306_SWITCHCAPVCC, 0x3D);  // initialize with the I2C addr 0x3D (for the 128x64)
   display.drawBitmap(0, 0, Oxygen, 128, 64, 1);
   display.setTextSize(2);
+  display.setTextColor(BLACK);
+  display.setCursor(34, 36);
+  display.println(LastOxygenMessage + '%');
+  //display.display();
+  LastOxygenMessage = displayVal;
   display.setTextColor(WHITE);
   display.setCursor(34, 36);
   display.println(displayVal + '%');
   display.display();
-  Serial.println("O2 displayed.");
+  //Serial.println("O2 displayed.");
   //delay(2000);
 }
  int freeRam () {

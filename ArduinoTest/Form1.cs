@@ -25,20 +25,20 @@ namespace ArduinoTest
             Microcontrollers = ArduinoController.AutodetectArduinoPort();
             //int controllerCount = 0;
 
-            if (Microcontrollers.Count() == 0 )
-            {
-                var Options_Mockup = new Options_Mockup();
-                Options_Mockup.Show();
-            }
+            //if (Microcontrollers.Count() == 0 )
+           // {
+              //  var Options_Mockup = new Options_Mockup();
+               // Options_Mockup.Show();
+           // }
 
-            else
-            {
+           // else
+           // {
                 //foreach(DropdownList in Form Start, Position blah blah)
-                var mc = Microcontrollers.Where(p => p.UName == "something from a TextBox").First();
+            //    var mc = Microcontrollers.Where(p => p.UName == "something from a TextBox").First();
                 //string SerialPortName = mc.serialPort.ToString();        
                 //serialPort1.DataReceived += serialPort1_DataReceived; // threading problems?
                 //serialPort1.Open();
-            }
+          //  }
         }
 
         
@@ -74,14 +74,19 @@ namespace ArduinoTest
         {
             // http://www.ascii-code.com/
 
-            string textToSend = string.Format("\x02{0}\x03",textBox2.Text);
-
-            //serialPort1.Open();
+            //string textToSend = string.Format("\x02{0}\x03",textBox2.Text);
+            string textToSend = string.Format("<{0}>", textBox2.Text);
+           // string textToSend = "<" + textBox2.Text + ">";
+            serialPort1.BaudRate = 115200;
+            serialPort1.DataReceived += serialPort1_DataReceived;
+            serialPort1.PortName = "COM6";
+            serialPort1.Open();
             if (serialPort1.IsOpen)
             {
                 serialPort1.WriteLine(textToSend);
+
             }
-            //serialPort1.Close();
+            serialPort1.Close();
 
         }
         #endregion
